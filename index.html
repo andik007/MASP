@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prezentace MASP - Prohlížeč slidů</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    #slide {
+      max-width: 100%;
+      height: auto;
+      margin: 20px auto;
+      display: block;
+    }
+    .nav-button {
+      font-size: 2em;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      user-select: none;
+    }
+    .nav-button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Prezentace MASP</h1>
+
+  <img id="slide" src="" alt="Slide" />
+
+  <div>
+    <button id="prevBtn" class="nav-button">← Předchozí</button>
+    <button id="nextBtn" class="nav-button">Další →</button>
+  </div>
+
+  <script>
+    // Seznam URL obrázků slidů z Cloudinary (přidej všechny své obrázky sem)
+    const slides = [
+      "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471655/slide_28_m6dwp9.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471654/slide_27_fq9wok.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471654/slide_25_vsztja.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471654/slide_24_iecikw.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471654/slide_26_rbvo4f.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471654/slide_23_nfc2sy.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471654/slide_22_bj997u.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471650/slide_21_lzmfcp.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471650/slide_20_b0v7rn.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471650/slide_19_v12qc8.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471649/slide_13_p2i9mw.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471650/slide_15_a6dbbx.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471650/slide_18_pqcsyl.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471650/slide_16_qxvmou.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471649/slide_14_hbtfu2.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471649/slide_17_ikr8sj.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471649/slide_12_bfu1dv.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_9_rrvamn.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_8_qp0gjk.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471649/slide_5_pgpks0.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471649/slide_10_qu8spk.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471649/slide_11_zanwpc.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_6_f9mhx3.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_7_hperle.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_4_si00bg.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_3_qvvdsr.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_2_dyt7nw.jpg",
+	  "https://res.cloudinary.com/dv8cskyeh/image/upload/v1753471648/slide_1_tnbzpl.jpg",
+      "https://res.cloudinary.com/tvuj_cloud_name/image/upload/v1690000000/slide_2.jpg",
+      // přidej další URL ...
+    ];
+
+    let currentIndex = 0;
+
+    const slideImage = document.getElementById('slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateSlide() {
+      slideImage.src = slides[currentIndex];
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === slides.length -1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlide();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < slides.length -1) {
+        currentIndex++;
+        updateSlide();
+      }
+    });
+
+    // Na začátku zobraz první slide
+    updateSlide();
+  </script>
+
+</body>
+</html>
